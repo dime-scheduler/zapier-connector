@@ -26,6 +26,10 @@ Supercharge your business by powering up Microsoft Dynamics 365 Business Central
 
 All you need to know about the application is documented on the [development docs](https://ds-docs-dev.azurewebsites.net/). End-user documentation is available on [docs.dimescheduler.com](docs.dimescheduler.com).
 
+## Prerequisites
+
+- [Zapier CLI](https://platform.zapier.com/cli_tutorials/getting-started)
+
 ## Contributing
 
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)

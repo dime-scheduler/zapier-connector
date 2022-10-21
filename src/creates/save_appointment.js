@@ -1,9 +1,9 @@
 module.exports = {
-  key: 'create_appointment',
+  key: 'save_appointment',
   noun: 'Appointment',
   display: {
-    label: 'Create appointment',
-    description: 'Creates an appointmnet',
+    label: 'Save appointment',
+    description: 'Saves an appointmnet',
     hidden: false,
     important: true,
   },

@@ -1,33 +1,33 @@
 module.exports = {
-  key: 'create_category',
-  noun: 'Category',
+  key: 'save_job',
+  noun: 'Job',
   display: {
-    label: 'Create category',
-    description: 'Creates a category',
+    label: 'Save job',
+    description: 'Saves a ',
     hidden: false,
     important: true,
   },
   operation: {
     inputFields: [
       {
-        key: 'name',
-        label: 'Name',
+        key: 'sourceApp',
+        label: 'Source App',
         type: 'string',
         required: true,
         list: false,
         altersDynamicFields: false,
       },
       {
-        key: 'displayName',
-        label: 'Display Name',
+        key: 'sourceType',
+        label: 'Source Type',
         type: 'string',
         required: false,
         list: false,
         altersDynamicFields: false,
       },
       {
-        key: 'color',
-        label: 'Color',
+        key: 'jobNo',
+        label: 'Job Number',
         type: 'string',
         required: false,
         list: false,
@@ -36,9 +36,9 @@ module.exports = {
     ],
     perform: {
       body: {
-        name: '{{bundle.inputData.name}}',
-        displayName: '{{bundle.inputData.displayName}}',
-        color: '{{bundle.inputData.color}}',
+        sourceApp: '{{bundle.inputData.sourceApp}}',
+        sourceType: '{{bundle.inputData.sourceType}}',
+        jobNo: '{{bundle.inputData.jobNo}}'
       },
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ module.exports = {
         'ds-user': '{{bundle.authData.ds-user}}',
         'ds-password': '{{bundle.authData.ds-password}}',
       },
-      url: 'https://api.dimescheduler.com/v0.1/category',
+      url: 'https://api.dimescheduler.com/v0.1/job',
     },
   },
 };

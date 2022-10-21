@@ -5,7 +5,7 @@ const zapier = require('zapier-platform-core');
 const App = require('../../index');
 const appTester = zapier.createAppTester(App);
 
-describe('Create - create_appointment', () => {
+describe('Save - save_category', () => {
   zapier.tools.env.inject();
 
   it('should create an object', async () => {
@@ -25,7 +25,7 @@ describe('Create - create_appointment', () => {
     };
 
     const result = await appTester(
-      App.creates['create_appointment'].operation.perform,
+      App.creates['save_category'].operation.perform,
       bundle
     );
     result.should.not.be.an.Array();
