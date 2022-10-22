@@ -1,34 +1,32 @@
+const headers = require('../utils/auth.js');
+const constants = require('../utils/constants.js');
+const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
+
+const fields = [
+  { key: 'sourceApp', label: 'Source App', type: "string", required: false },
+  { key: 'sourceType', label: 'Source Type', type: "string", required: false },
+  { key: 'appointmentId', label: 'Appointment Id', type: "string", required: false },
+  { key: 'resourceNo', label: 'Resource No', type: "string", required: false },
+  { key: 'appointmentGuid', label: 'Appointment Guid', type: "string", required: false },
+  { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "string", required: false },
+];
+
 module.exports = {
   key: 'save_appointment_uri',
-  noun: 'Appointment Uri',
+  noun: 'Appointment URI',
   display: {
     label: 'Set uri of appointment',
-    description: 'Sets the uri of the appointment ',
+    description: 'Sets the uri of the appointment.',
     hidden: false,
     important: true,
   },
   operation: {
-    inputFields: [],
+    inputFields: createFields(fields),
     perform: {
-      body: {},
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'OCP-APIM-SUBSCRIPTION-KEY':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'DS-URI': '{{bundle.authData.ds-uri}}',
-        'DS-USER': '{{bundle.authData.ds-user}}',
-        'DS-PASSWORD': '{{bundle.authData.ds-password}}',
-      },
+      url: createUri(constants.endpoints.appointment.uri),
       method: 'POST',
-      params: {
-        'Ocp-Apim-Subscription-Key':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'ds-uri': '{{bundle.authData.ds-uri}}',
-        'ds-user': '{{bundle.authData.ds-user}}',
-        'ds-password': '{{bundle.authData.ds-password}}',
-      },
-      url: 'https://api.dimescheduler.com/v0.1/appointmentUri',
+      headers,
+      body: createBody(fields),
     },
   },
 };
