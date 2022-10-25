@@ -1,34 +1,32 @@
+const headers = require('../utils/auth.js');
+const constants = require('../utils/constants.js');
+const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
+
+const fields = [
+  { key: 'resourceNo', label: 'ResourceNo', type: "string", required: false },
+  { key: 'date', label: 'Date', type: "string", required: false },
+  { key: 'capacityInSeconds', label: 'CapacityInSeconds', type: "string", required: false },
+  { key: 'quantity', label: 'Quantity', type: "string", required: false },
+  { key: 'unitOfMeasure', label: 'UnitOfMeasure', type: "string", required: false },
+  { key: 'unitOfMeasureConversion', label: 'UnitOfMeasureConversion', type: "string", required: false },
+];
+
 module.exports = {
   key: 'save_resource_capacity',
   noun: 'Resource Capacity',
   display: {
     label: 'Save resource capacity',
-    description: 'Saves a ',
+    description: 'Saves a capacity entry for a resource',
     hidden: false,
     important: true,
   },
   operation: {
-    inputFields: [],
+    inputFields: createFields(fields),
     perform: {
-      body: {},
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'OCP-APIM-SUBSCRIPTION-KEY':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'DS-URI': '{{bundle.authData.ds-uri}}',
-        'DS-USER': '{{bundle.authData.ds-user}}',
-        'DS-PASSWORD': '{{bundle.authData.ds-password}}',
-      },
+      url: createUri(constants.endpoints.resource.capacity),
       method: 'POST',
-      params: {
-        'Ocp-Apim-Subscription-Key':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'ds-uri': '{{bundle.authData.ds-uri}}',
-        'ds-user': '{{bundle.authData.ds-user}}',
-        'ds-password': '{{bundle.authData.ds-password}}',
-      },
-      url: 'https://api.dimescheduler.com/v0.1/resourceCapacity',
+      headers,
+      body: createBody(fields),
     },
   },
 };

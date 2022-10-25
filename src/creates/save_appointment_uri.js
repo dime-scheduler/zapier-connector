@@ -5,10 +5,10 @@ const { createUri, createFields, createBody } = require('../utils/actionHelpers.
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
   { key: 'sourceType', label: 'Source Type', type: "string", required: false },
-  { key: 'appointmentId', label: 'Appointment Id', type: "string", required: false },
-  { key: 'resourceNo', label: 'Resource No', type: "string", required: false },
+  { key: 'appointmentId', label: 'Appointment Id', type: "string", required: false },  
   { key: 'appointmentGuid', label: 'Appointment Guid', type: "string", required: false },
-  { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "string", required: false },
+  { key: 'uri', label: 'URI', type: "string", required: false },
+  { key: 'description', label: 'Description', type: "string", required: false },
 ];
 
 module.exports = {

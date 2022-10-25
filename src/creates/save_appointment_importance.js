@@ -3,12 +3,11 @@ const constants = require('../utils/constants.js');
 const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
-  { key: 'sourceApp', label: 'Source App', type: "string", required: true },
-  { key: 'sourceType', label: 'Source Type', type: "string", required: true },
-  { key: 'appointmentId', label: 'Appointment ID', type: "string", required: false },
+  { key: 'sourceApp', label: 'Source App', type: "string", required: false },
+  { key: 'sourceType', label: 'Source Type', type: "string", required: false },
+  { key: 'appointmentId', label: 'Appointment ID', type: "integer", required: false },
   { key: 'appointmentGuid', label: 'Appointment GUID', type: "string", required: false },
-  { key: 'subject', label: 'Subject', type: "string", required: false },
-  { key: 'body', label: 'Body', type: "string", required: false },
+  { key: 'importance', label: 'Importance', type: "integer", required: false }
 ];
 
 module.exports = {
