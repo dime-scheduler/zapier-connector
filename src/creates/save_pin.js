@@ -1,3 +1,12 @@
+const headers = require('../utils/auth.js');
+const constants = require('../utils/constants.js');
+const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
+
+const fields = [
+  { key: 'name', label: 'Name', type: "string", required: false },
+  { key: 'color', label: 'Color', type: "string", required: false },
+];
+
 module.exports = {
   key: 'save_pin',
   noun: 'Pin',
@@ -8,27 +17,12 @@ module.exports = {
     important: true,
   },
   operation: {
-    inputFields: [],
+    inputFields: createFields(fields),
     perform: {
-      body: {},
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'OCP-APIM-SUBSCRIPTION-KEY':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'DS-URI': '{{bundle.authData.ds-uri}}',
-        'DS-USER': '{{bundle.authData.ds-user}}',
-        'DS-PASSWORD': '{{bundle.authData.ds-password}}',
-      },
+      url: createUri(constants.endpoints.caption),
       method: 'POST',
-      params: {
-        'Ocp-Apim-Subscription-Key':
-          '{{bundle.authData.Ocp-Apim-Subscription-Key}}',
-        'ds-uri': '{{bundle.authData.ds-uri}}',
-        'ds-user': '{{bundle.authData.ds-user}}',
-        'ds-password': '{{bundle.authData.ds-password}}',
-      },
-      url: 'https://api.dimescheduler.com/v0.1/pin',
+      headers,
+      body: createBody(fields),
     },
   },
 };

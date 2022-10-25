@@ -1,6 +1,6 @@
 {
   "name": "dime-scheduler",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "Dime.Scheduler is a resource and project planning solution that was purpose-built for ERP, CRM and other LoB business systems.",
   "main": "index.js",
   "scripts": {

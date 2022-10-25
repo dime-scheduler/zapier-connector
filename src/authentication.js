@@ -27,10 +27,10 @@ module.exports = {
     },
   },
   fields: [
-    { computed: false, key: 'Ocp-Apim-Subscription-Key', required: false },
+    { computed: false, key: 'Ocp-Apim-Subscription-Key', label: 'API key', required: true },
     { computed: false, key: 'ds-uri', required: true, label: 'URI' },
     { computed: false, key: 'ds-user', required: true, label: 'User' },
-    { computed: false, key: 'ds-password', required: false, label: 'Password' },
+    { computed: false, key: 'ds-password', label: 'Password', required: false },
   ],
   customConfig: {},
 };
