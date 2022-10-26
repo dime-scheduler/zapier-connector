@@ -6,24 +6,19 @@ const App = require('../../index');
 const appTester = zapier.createAppTester(App);
 const createBundle = require('./base_test.js');
 
-describe('Appointment', () => {
+describe('Appointment Content', () => {
   zapier.tools.env.inject();
 
-  it('Should upsert an appointment', async () => {
+  it('Should set appointment content', async () => {
     const input = {
-      sourceApp: 'ZAPIER',
-      sourceType: 'DEMO',
-      jobNo: 'DS_DEMO',
-      taskNo: 'DS_DEMO_15MIN',
-      subject: 'Hello world',
-      resourceNo: 'OPTIMIZE_001',
-      start: '2022-10-27T10:00:00Z',
-      end: '2022-10-27T12:00:00Z'
+      name: 'Zapier test',
+      displayName: 'Zapier test',
+      color: '#111111'
     };
 
     const bundle = createBundle(input);
     const result = await appTester(
-      App.creates['save_appointment'].operation.perform,
+      App.creates['save_appointment_content'].operation.perform,
       bundle
     );
     result.should.not.be.an.Array();

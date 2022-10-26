@@ -14,13 +14,10 @@ const createFields = (fields) => {
 }
 
 const createBody = (fields) => {
-    const dict = [];
+    const dict = {};
 
     for (const field of fields)
-        dict.push({
-            key: field.key,
-            value: `'{{bundle.inputData.${field.value ?? field.key}}}'`
-        });
+        dict[field.key] = `{{bundle.inputData.${field.value ?? field.key}}}`
 
     return dict;
 }

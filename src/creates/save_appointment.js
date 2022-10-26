@@ -36,7 +36,7 @@ module.exports = {
   noun: 'Appointment',
   display: {
     label: 'Save appointment',
-    description: 'Saves an appointmnet',
+    description: 'Saves an appointment',
     hidden: false,
     important: true,
   },

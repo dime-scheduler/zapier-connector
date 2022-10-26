@@ -5,4 +5,5 @@ module.exports = {
     'DS-URI': '{{bundle.authData.ds-uri}}',
     'DS-USER': '{{bundle.authData.ds-user}}',
     'DS-PASSWORD': '{{bundle.authData.ds-password}}',
+    'ds-append': true
 };

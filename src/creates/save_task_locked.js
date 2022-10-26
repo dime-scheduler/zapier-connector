@@ -16,7 +16,7 @@ module.exports = {
   noun: 'Task Locked',
   display: {
     label: 'Save task locked',
-    description: 'Saves a ',
+    description: 'Locks or unlocks the task',
     hidden: false,
     important: true,
   },

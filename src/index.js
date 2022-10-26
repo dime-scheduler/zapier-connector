@@ -8,6 +8,7 @@ const save_appointment_lockedCreate = require('./creates/save_appointment_locked
 const save_appointment_planning_quantityCreate = require('./creates/save_appointment_planning_quantity.js');
 const save_appointment_time_markerCreate = require('./creates/save_appointment_time_marker.js');
 const save_appointment_uriCreate = require('./creates/save_appointment_uri.js');
+const save_appointmentCreate = require('./creates/save_appointment.js');
 const save_assignmentCreate = require('./creates/save_assignment.js');
 const save_captionCreate = require('./creates/save_caption.js');
 const save_containerCreate = require('./creates/save_container.js');
@@ -36,6 +37,7 @@ module.exports = {
   creates: {
     [createCategoryCreate.key]: createCategoryCreate,
     [save_action_urlCreate.key]: save_action_urlCreate,
+    [save_appointmentCreate.key]: save_appointmentCreate,
     [save_appointment_categoryCreate.key]: save_appointment_categoryCreate,
     [save_appointment_contentCreate.key]: save_appointment_contentCreate,
     [save_appointment_importanceCreate.key]: save_appointment_importanceCreate,

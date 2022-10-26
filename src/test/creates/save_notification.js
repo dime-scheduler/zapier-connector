@@ -6,19 +6,15 @@ const App = require('../../index');
 const appTester = zapier.createAppTester(App);
 const createBundle = require('./base_test.js');
 
-describe('Category', () => {
+describe('Notification', () => {
   zapier.tools.env.inject();
 
-  it('Should upsert a category', async () => {
-    const input = {
-      name: 'Zapier test',
-      displayName: 'Zapier test',
-      color: '#111111'
-    };
+  it('Should upsert a notification', async () => {
+    const input = {};
 
     const bundle = createBundle(input);
     const result = await appTester(
-      App.creates['save_category'].operation.perform,
+      App.creates['save_notification'].operation.perform,
       bundle
     );
     result.should.not.be.an.Array();
