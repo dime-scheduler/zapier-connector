@@ -10,7 +10,14 @@ describe('Resource', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a resource', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      resourceNo: 'Zapier test',
+      resourceName: 'Zapier test',
+      displayName: 'Zapier test',
+      resourceGpsTrackingEnabled: true
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

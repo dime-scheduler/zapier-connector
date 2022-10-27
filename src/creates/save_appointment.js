@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'appointmentId', label: 'AppointmentId', type: "string", required: false },
@@ -14,7 +13,6 @@ const fields = [
   { key: 'body', label: 'Body', type: "string", required: false },
   { key: 'start', label: 'Start', type: "datetime", required: false },
   { key: 'end', label: 'End', type: "datetime", required: false },
-  { key: 'isAllDay', label: 'IsAllDay', type: "boolean", required: false },
   { key: 'timeMarker', label: 'TimeMarker', type: "string", required: false },
   { key: 'category', label: 'Category', type: "string", required: false },
   { key: 'importance', label: 'Importance', type: "integer", required: false },
@@ -28,25 +26,13 @@ const fields = [
   { key: 'useFixedPlanningQuantity', label: 'UseFixedPlanningQuantity', type: "boolean", required: false },
   { key: 'roundToUnitOfMeasure', label: 'RoundToUnitOfMeasure', type: "boolean", required: false },
   { key: 'sentFromBackOffice', label: 'SentFromBackOffice', type: "boolean", required: false },
-
 ];
 
-module.exports = {
-  key: 'save_appointment',
-  noun: 'Appointment',
-  display: {
-    label: 'Save appointment',
-    description: 'Saves an appointment',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.appointment),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    }
-  }
-};
+module.exports = createAction(
+  constants.endpoints.appointment.appointment,
+  'save_appointment',
+  'Appointment',
+  'Save appointment',
+  'Saves an appointment.',
+  fields
+);

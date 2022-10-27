@@ -10,7 +10,11 @@ describe('Resource Location', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a resource location', async () => {
-    const input = {};
+    const input = {
+      resourceno: 'Zapier test',
+      latitude: "0",
+      longitude: "0"
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

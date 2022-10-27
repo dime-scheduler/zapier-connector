@@ -10,7 +10,12 @@ describe('Appointment Planning Quantity', () => {
   zapier.tools.env.inject();
 
   it('Should set appointment planning quantity', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      planningQuantity: 25,
+      appointmentGuid: 'b0846a9e-ae8d-4d02-9f7a-49e50b9f3fc0'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

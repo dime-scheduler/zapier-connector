@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'resourceno', label: 'Resourceno', type: "string", required: false },
@@ -13,22 +12,11 @@ const fields = [
   { key: 'power', label: 'Power', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_resource_location',
-  noun: 'Resource Location',
-  display: {
-    label: 'Save resource location',
-    description: 'Saves the coordinates of a resource',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.resource.location),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.resource.location,
+  'save_resource_location',
+  'Resource Location',
+  'Save resource location',
+  'Saves a resource location.',
+  fields
+);

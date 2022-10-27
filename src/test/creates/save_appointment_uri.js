@@ -10,7 +10,13 @@ describe('Appointment URI', () => {
   zapier.tools.env.inject();
 
   it('Should set appointment URI', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      uri: 'http://www.dimescheduler.com',
+      description: 'Dime.Scheduler',
+      appointmentGuid: 'b0846a9e-ae8d-4d02-9f7a-49e50b9f3fc0'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

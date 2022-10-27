@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
+const { createAction } = require('../utils/actionBuilder.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'body', label: 'Body', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_appointment_content',
-  noun: 'Appointment Content',
-  display: {
-    label: 'Set content of appointment',
-    description: 'Sets the content of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.content),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.content,
+  'save_appointment_content',
+  'Appointment Content',
+  'Set content of appointment',
+  'Sets the content of the appointment.',
+  fields
+);

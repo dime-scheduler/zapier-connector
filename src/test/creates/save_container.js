@@ -10,7 +10,9 @@ describe('Container', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a container', async () => {
-    const input = {};
+    const input = {
+      name: 'Zapier test'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

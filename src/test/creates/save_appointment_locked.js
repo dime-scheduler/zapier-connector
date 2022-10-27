@@ -10,7 +10,13 @@ describe('Appointment Locked', () => {
   zapier.tools.env.inject();
 
   it('Should set appointment lock', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      locked: true,
+      appointmentGuid: 'b0846a9e-ae8d-4d02-9f7a-49e50b9f3fc0'
+    };
+
     const bundle = createBundle(input);
     const result = await appTester(
       App.creates['save_appointment_locked'].operation.perform,

@@ -10,7 +10,13 @@ describe('Filter Group', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a filter group', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      jobNo: 'DS_DEMO',
+      taskNo: 'DS_DEMO_TEST',
+      name: 'Zapier test'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

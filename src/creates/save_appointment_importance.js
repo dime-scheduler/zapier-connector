@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -10,22 +9,11 @@ const fields = [
   { key: 'importance', label: 'Importance', type: "integer", required: false }
 ];
 
-module.exports = {
-  key: 'save_appointment_importance',
-  noun: 'Appointment Importance',
-  display: {
-    label: 'Set importance of appointment',
-    description: 'Sets the importance of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.importance),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.importance,
+  'save_appointment_importance',
+  'Appointment Importance',
+  'Set importance of appointment',
+  'Sets the importance of the appointment',
+  fields
+);

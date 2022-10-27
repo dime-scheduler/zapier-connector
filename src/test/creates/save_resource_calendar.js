@@ -10,7 +10,13 @@ describe('Resource Calendar', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a resource calendar', async () => {
-    const input = {};
+    const input = {
+      resourceNo: 'Zapier test',
+      calendarCode: 'Company Calendar',
+      resourceCalendarCode: 'Zapier test',
+      startDate: '2022-10-01',
+      endDate: '2022-11-01'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

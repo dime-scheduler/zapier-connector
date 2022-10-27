@@ -10,7 +10,10 @@ describe('Pin', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a pin', async () => {
-    const input = {};
+    const input = {
+      name: 'Zapier test',
+      color: '#111111'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

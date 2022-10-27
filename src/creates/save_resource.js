@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'resourceNo', label: 'ResourceNo', type: "string", required: true },
@@ -88,22 +87,11 @@ const fields = [
   { key: 'freeBit5', label: 'FreeBit5', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_resource',
-  noun: 'Resource',
-  display: {
-    label: 'Set resource',
-    description: 'Saves the resource.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.resource.resource),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.resource.resource,
+  'save_resource',
+  'Resource',
+  'Save resource',
+  'Saves a resource.',
+  fields
+);

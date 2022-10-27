@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'code', label: 'Code', type: "string", required: false },
@@ -10,22 +9,11 @@ const fields = [
   { key: 'endDate', label: 'EndDate', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_resource_calendar',
-  noun: 'Resource Calendar',
-  display: {
-    label: 'Save resource calendar',
-    description: 'Saves a resource calendar',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.resource.calendar),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.resource.calendar,
+  'save_resource_calendar',
+  'Resource Calendar',
+  'Save resource calendar',
+  'Saves a resource calendar.',
+  fields
+);

@@ -11,6 +11,7 @@ const endpoints = {
     filterGroup: 'filterGroup',
     filterValue: 'filterValue',
     notification: 'notification',
+    pin: 'pin',
     appointment: {
         appointment: 'appointment',
         assignment: 'assignment',

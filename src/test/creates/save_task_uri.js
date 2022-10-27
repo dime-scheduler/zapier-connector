@@ -10,7 +10,14 @@ describe('Task URI', () => {
   zapier.tools.env.inject();
 
   it('Should update the task URI', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      jobNo: 'DS_DEMO',
+      taskNo: 'DS_DEMO_TEST',
+      uri: 'http://www.dimescheduler.com',
+      description: 'Dime.Scheduler'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

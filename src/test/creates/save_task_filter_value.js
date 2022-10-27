@@ -10,7 +10,15 @@ describe('Task Filter Value', () => {
   zapier.tools.env.inject();
 
   it('Should update the task filter value', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      jobNo: 'DS_DEMO',
+      taskNo: 'DS_DEMO_TEST',
+      filterGroup: 'Zapier test',
+      filterValue: 'Zapier test',
+    };
+
     const bundle = createBundle(input);
     const result = await appTester(
       App.creates['save_task_filter_value'].operation.perform,

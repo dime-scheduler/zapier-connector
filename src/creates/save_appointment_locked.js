@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "boolean", required: false },
 ];
 
-module.exports = {
-  key: 'save_appointment_locked',
-  noun: 'Appointment Locked',
-  display: {
-    label: 'Set locked of appointment',
-    description: 'Sets the locked status of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.locked),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.locked,
+  'save_appointment_locked',
+  'Appointment Locked',
+  'Lock appointment',
+  'Sets the locked status of the appointment.',
+  fields
+);

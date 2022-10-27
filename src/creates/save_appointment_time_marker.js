@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_appointment_time_marker',
-  noun: 'Appointment Time Marker',
-  display: {
-    label: 'Set time marker of appointment',
-    description: 'Sets the time marker of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.timeMarker),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.timeMarker,
+  'save_appointment_time_marker',
+  'Appointment Time Marker',
+  'Set time marker of appointment',
+  'Sets the time marker of the appointment.',
+  fields
+);

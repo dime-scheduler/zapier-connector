@@ -10,7 +10,13 @@ describe('Caption', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a caption', async () => {
-    const input = {};
+    const input = {
+      context: 1,
+      sourceTable: 'JOB',
+      fieldName: 'SourceApp',
+      language: 'nl',
+      text: 'Hello world'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

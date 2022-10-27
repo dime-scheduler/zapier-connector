@@ -10,7 +10,13 @@ describe('Assignment', () => {
   zapier.tools.env.inject();
 
   it('Should upsert an assignment', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      subject: 'Hello world',
+      resourceNo: 'OPTIMIZE_002',
+      appointmentGuid: 'b0846a9e-ae8d-4d02-9f7a-49e50b9f3fc0'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

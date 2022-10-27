@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: '"sourceApp', type: "string", required: true },
@@ -109,7 +108,7 @@ const fields = [
   { key: 'planningUom', label: 'PlanningUom', type: "string", required: false },
   { key: 'planningUomconversion', label: 'PlanningUomconversion', type: "string", required: false },
   { key: 'planningQty', label: 'PlanningQty', type: "string", required: false },
-  { key: 'useFixPlanningQty', label: 'UseFixPlanningQty', type: "string", required: false },
+  { key: 'useFixPlanningQty', label: 'UseFixPlanningQty', type: "boolean", required: false },
   { key: 'roundToUom', label: 'RoundToUom', type: "string", required: false },
   { key: 'appointmentTemplate', label: 'AppointmentTemplate', type: "string", required: false },
   { key: 'bulkPlanningQty', label: 'BulkPlanningQty', type: "string", required: false },
@@ -136,25 +135,13 @@ const fields = [
   { key: 'containerIndex', label: 'ContainerIndex', type: "string", required: false },
   { key: 'checkAppointments', label: 'CheckAppointments', type: "string", required: false },
   { key: 'sentFromBackOffice', label: 'SentFromBackOffice', type: "string", required: false },
-
 ];
 
-module.exports = {
-  key: 'save_task',
-  noun: 'Task',
-  display: {
-    label: 'Save task',
-    description: 'Saves a task',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.task.task),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.task.task,
+  'save_task',
+  'Task',
+  'Save task',
+  'Saves a task',
+  fields
+);

@@ -10,7 +10,13 @@ describe('Job', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a job', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      jobNo: 'DS_DEMO',
+      shortDescription: 'Hi from Zapier test suite',
+      description: 'Hi from Zapier test suite'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'SourceApp', type: "string", required: false },
@@ -8,7 +7,7 @@ const fields = [
   { key: 'jobNo', label: 'JobNo', type: "string", required: false },
   { key: 'shortDescription', label: 'ShortDescription', type: "string", required: false },
   { key: 'description', label: 'Description', type: "string", required: false },
-  { key: 'type', label: 'Type', type: "string", required: false },
+  { key: 'type', label: 'Type', type: "integer", required: false },
   { key: 'name', label: 'Name', type: "string", required: false },
   { key: 'category', label: 'Category', type: "string", required: false },
   { key: 'timeMarker', label: 'TimeMarker', type: "string", required: false },
@@ -101,16 +100,16 @@ const fields = [
   { key: 'freeDate3', label: 'FreeDate3', type: "string", required: false },
   { key: 'freeDate4', label: 'FreeDate4', type: "string", required: false },
   { key: 'freeDate5', label: 'FreeDate5', type: "string", required: false },
-  { key: 'freeBit1', label: 'FreeBit1', type: "string", required: false },
-  { key: 'freeBit2', label: 'FreeBit2', type: "string", required: false },
-  { key: 'freeBit3', label: 'FreeBit3', type: "string", required: false },
-  { key: 'freeBit4', label: 'FreeBit4', type: "string", required: false },
-  { key: 'freeBit5', label: 'FreeBit5', type: "string", required: false },
-  { key: 'enableManualSelection', label: 'EnableManualSelection', type: "string", required: false },
-  { key: 'availableInGantt', label: 'AvailableInGantt', type: "string", required: false },
-  { key: 'startDate', label: 'StartDate', type: "string", required: false },
-  { key: 'endDate', label: 'EndDate', type: "string", required: false },
-  { key: 'allowDependencies', label: 'AllowDependencies', type: "string", required: false },
+  { key: 'freeBit1', label: 'FreeBit1', type: "boolean", required: false },
+  { key: 'freeBit2', label: 'FreeBit2', type: "boolean", required: false },
+  { key: 'freeBit3', label: 'FreeBit3', type: "boolean", required: false },
+  { key: 'freeBit4', label: 'FreeBit4', type: "boolean", required: false },
+  { key: 'freeBit5', label: 'FreeBit5', type: "boolean", required: false },
+  { key: 'enableManualSelection', label: 'EnableManualSelection', type: "boolean", required: false },
+  { key: 'availableInGantt', label: 'AvailableInGantt', type: "boolean", required: false },
+  { key: 'startDate', label: 'StartDate', type: "datetime", required: false },
+  { key: 'endDate', label: 'EndDate', type: "datetime", required: false },
+  { key: 'allowDependencies', label: 'AllowDependencies', type: "boolean", required: false },
   { key: 'note', label: 'Note', type: "string", required: false },
   { key: 'overRuleGanttPlanning', label: 'OverRuleGanttPlanning', type: "string", required: false },
   { key: 'checkAppointments', label: 'CheckAppointments', type: "string", required: false },
@@ -118,22 +117,11 @@ const fields = [
   { key: 'readOnly', label: 'ReadOnly', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_job',
-  noun: 'Job',
-  display: {
-    label: 'Set job',
-    description: 'Saves the job.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.job),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.job,
+  'save_job',
+  'Job',
+  'Save job',
+  'Saves a job',
+  fields
+);

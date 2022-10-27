@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'SourceApp', type: "string", required: false },
@@ -12,22 +11,11 @@ const fields = [
   { key: 'transferToTemp', label: 'TransferToTemp', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_task_filter_value',
-  noun: 'Task Filter Value',
-  display: {
-    label: 'Save task filter value',
-    description: 'Saves a filter value for this task',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.task.filterValue),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.task.filterValue,
+  'save_task_filter_value',
+  'Task Filter Value',
+  'Save task filter value',
+  'Saves a task filter value.',
+  fields
+);

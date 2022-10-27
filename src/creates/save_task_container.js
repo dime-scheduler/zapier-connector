@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'SourceApp', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'index', label: 'Index', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_task_container',
-  noun: 'Task Container',
-  display: {
-    label: 'Save task container',
-    description: 'Saves a task container',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.task.container),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.task.container,
+  'save_task_container',
+  'Task Container',
+  'Save task container',
+  'Saves a task container.',
+  fields
+);

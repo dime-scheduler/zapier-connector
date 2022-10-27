@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
+const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "string", required: false },
 ];
 
-module.exports = {
-  key: 'save_appointment_planning_quantity',
-  noun: 'Appointment Planning Quantity',
-  display: {
-    label: 'Set planning quantity of appointment',
-    description: 'Sets the planning quantity of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.planningQuantity),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.planningQuantity,
+  'save_appointment_planning_quantity',
+  'Appointment Planning Quantity',
+  'Set planning quantity of appointment',
+  'Sets the planning quantity of the appointment.',
+  fields
+);

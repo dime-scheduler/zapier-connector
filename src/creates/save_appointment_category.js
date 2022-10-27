@@ -1,6 +1,5 @@
-const headers = require('../utils/auth.js');
 const constants = require('../utils/constants.js');
-const { createUri, createFields, createBody } = require('../utils/actionHelpers.js');
+const { createAction } = require('../utils/actionBuilder.js');
 
 const fields = [
   { key: 'sourceApp', label: 'Source App', type: "string", required: false },
@@ -11,22 +10,11 @@ const fields = [
   { key: 'sentFromBackoffice', label: 'Sent From Backoffice', type: "boolean", required: false },
 ];
 
-module.exports = {
-  key: 'save_appointment_category',
-  noun: 'Appointment Category',
-  display: {
-    label: 'Set category of appointment',
-    description: 'Sets the category of the appointment.',
-    hidden: false,
-    important: true,
-  },
-  operation: {
-    inputFields: createFields(fields),
-    perform: {
-      url: createUri(constants.endpoints.appointment.category),
-      method: 'POST',
-      headers,
-      body: createBody(fields),
-    },
-  },
-};
+module.exports = createAction(
+  constants.endpoints.appointment.category,
+  'save_appointment_category',
+  'Appointment Category',
+  'Set category of appointment',
+  'Sets the category of the appointment.',
+  fields
+);

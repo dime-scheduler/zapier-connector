@@ -10,7 +10,11 @@ describe('Resource URI', () => {
   zapier.tools.env.inject();
 
   it('Should upsert a resource URI', async () => {
-    const input = {};
+    const input = {
+      resourceNo: 'Zapier test',
+      uri: 'https://www.dimescheduler.com',
+      description: 'Dime.Scheduler'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(

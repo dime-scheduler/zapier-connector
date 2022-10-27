@@ -10,7 +10,12 @@ describe('Appointment Category', () => {
   zapier.tools.env.inject();
 
   it('Should set appointment category', async () => {
-    const input = {};
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      category: 'Zapier test',
+      appointmentGuid: 'b0846a9e-ae8d-4d02-9f7a-49e50b9f3fc0'
+    };
 
     const bundle = createBundle(input);
     const result = await appTester(
