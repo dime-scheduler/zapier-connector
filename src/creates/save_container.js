@@ -2,10 +2,14 @@ const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
 
 const fields = [
-  { key: 'name', label: 'Name', type: "string", required: false },
-  { key: 'handleDate', label: 'HandleDate', type: "string", required: false },
-  { key: 'handleLocked', label: 'HandleLocked', type: "string", required: false },
+  { key: 'name', label: 'Name', type: "string" },
+  { key: 'handleDate', label: 'HandleDate', type: "string" },
+  { key: 'handleLocked', label: 'HandleLocked', type: "string" },
 ];
+
+const sample = {
+  name: 'Zapier test'
+};
 
 module.exports = createAction(
   constants.endpoints.container,
@@ -13,5 +17,6 @@ module.exports = createAction(
   'Container',
   'Set a container',
   'Saves the container',
-  fields
+  fields,
+  sample
 );

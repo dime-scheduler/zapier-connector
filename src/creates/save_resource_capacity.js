@@ -2,13 +2,20 @@ const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
 
 const fields = [
-  { key: 'resourceNo', label: 'ResourceNo', type: "string", required: false },
-  { key: 'date', label: 'Date', type: "datetime", required: false },
-  { key: 'capacityInSeconds', label: 'CapacityInSeconds', type: "integer", required: false },
-  { key: 'quantity', label: 'Quantity', type: "string", required: false },
-  { key: 'unitOfMeasure', label: 'UnitOfMeasure', type: "string", required: false },
-  { key: 'unitOfMeasureConversion', label: 'UnitOfMeasureConversion', type: "string", required: false },
+  { key: 'resourceNo', label: 'ResourceNo', type: "string" },
+  { key: 'date', label: 'Date', type: "datetime" },
+  { key: 'capacityInSeconds', label: 'CapacityInSeconds', type: "integer" },
+  { key: 'quantity', label: 'Quantity', type: "string" },
+  { key: 'unitOfMeasure', label: 'UnitOfMeasure', type: "string" },
+  { key: 'unitOfMeasureConversion', label: 'UnitOfMeasureConversion', type: "string" },
 ];
+
+const sample = {
+  resourceNo: 'Zapier test',
+  date: '2022-10-17',
+  capacityInSeconds: 500,
+  quantity: 50,
+};
 
 module.exports = createAction(
   constants.endpoints.resource.capacity,
@@ -16,5 +23,6 @@ module.exports = createAction(
   'Resource Capacity',
   'Save resource capacity',
   'Saves a resource capacity.',
-  fields
+  fields,
+  sample
 );

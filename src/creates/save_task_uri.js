@@ -10,11 +10,21 @@ const fields = [
   { key: 'description', label: 'Description', type: "string", required: true },
 ];
 
+const sample = {
+  sourceApp: 'ZAPIER',
+  sourceType: 'DEMO',
+  jobNo: 'DS_DEMO',
+  taskNo: 'DS_DEMO_TEST',
+  uri: 'http://www.dimescheduler.com',
+  description: 'Dime.Scheduler'
+};
+
 module.exports = createAction(
   constants.endpoints.task.uri,
   'save_task_uri',
   'Task URI',
   'Save task URI',
   'Saves a task URI.',
-  fields
+  fields,
+  sample
 );

@@ -9,21 +9,20 @@ const createBundle = require('./base_test.js');
 describe('Task Lock', () => {
   zapier.tools.env.inject();
 
-  // Disable test until DS connect applied the patch
-  // it('Should update the task lock', async () => {
-  //   const input = {
-  //     sourceApp: 'ZAPIER',
-  //     sourceType: 'DEMO',
-  //     jobNo: 'DS_DEMO',
-  //     taskNo: 'DS_DEMO_TEST',
-  //     locked: true
-  //   };
+  it('Should update the task lock', async () => {
+    const input = {
+      sourceApp: 'ZAPIER',
+      sourceType: 'DEMO',
+      jobNo: 'DS_DEMO',
+      taskNo: 'DS_DEMO_TEST',
+      locked: true
+    };
 
-  //   const bundle = createBundle(input);
-  //   const result = await appTester(
-  //     App.creates['save_task_locked'].operation.perform,
-  //     bundle
-  //   );
-  //   result.should.not.be.an.Array();
-  // });
+    const bundle = createBundle(input);
+    const result = await appTester(
+      App.creates['save_task_locked'].operation.perform,
+      bundle
+    );
+    result.should.not.be.an.Array();
+  });
 });

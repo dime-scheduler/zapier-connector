@@ -2,13 +2,21 @@ const { createAction } = require('../utils/actionBuilder.js');
 const constants = require('../utils/constants.js');
 
 const fields = [
-  { key: 'sourceApp', label: 'SourceApp', type: "string", required: false },
-  { key: 'sourceType', label: 'SourceType', type: "string", required: false },
-  { key: 'jobNo', label: 'JobNo', type: "string", required: false },
-  { key: 'taskNo', label: 'TaskNo', type: "string", required: false },
-  { key: 'name', label: 'Name', type: "string", required: false },
-  { key: 'index', label: 'Index', type: "string", required: false },
+  { key: 'sourceApp', label: 'SourceApp', type: "string" },
+  { key: 'sourceType', label: 'SourceType', type: "string" },
+  { key: 'jobNo', label: 'JobNo', type: "string" },
+  { key: 'taskNo', label: 'TaskNo', type: "string" },
+  { key: 'name', label: 'Name', type: "string" },
+  { key: 'index', label: 'Index', type: "string" },
 ];
+
+const sample = {
+  sourceApp: 'ZAPIER',
+  sourceType: 'DEMO',
+  jobNo: 'DS_DEMO',
+  taskNo: 'DS_DEMO_TEST',
+  name: 'Zapier test',
+};
 
 module.exports = createAction(
   constants.endpoints.task.container,
@@ -16,5 +24,6 @@ module.exports = createAction(
   'Task Container',
   'Save task container',
   'Saves a task container.',
-  fields
+  fields,
+  sample
 );
